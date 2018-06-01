@@ -1,0 +1,36 @@
+#!/bin/sh
+# Shell Script to generate Cisco Router Inventory
+#
+# Start
+
+source=/etc/hosts
+router=/var/lib/rancid/router/configs/
+tmp=/tmp/inv-rt-tmp
+format=/usr/local/bin/inventory-rt-awk
+
+# Generate device specific content
+
+for item in `grep rancid-crt $source | egrep -v '^\#' | awk '{print $2}'` ; do
+
+        if [ `ls -lsa $router$item | awk '{print $6}'`  -ne 0 ];
+        then
+           host=`grep $item $source | awk '{print $3}'`
+           vendor='Cisco'
+           model=`grep "\!Chassis type:" $router$item | awk '{print $3}'`
+           serial=`grep "\!Processor ID:" $router$item | awk '{print $3}'`
+           code=`grep "\!Image: Software:" $router$item | awk -F ", " '{print $2}'`
+           echo $host $vendor $model $serial $code >> $tmp
+        else
+           host=`grep $item $source | awk '{print $3}'`
+           vendor='Error'
+           model='No Config'
+           serial='Found'
+           echo $host $vendor $model $serial  >> $tmp
+       fi
+
+done
+
+$format $tmp
+rm $tmp
+
+# End
