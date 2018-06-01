@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Testing Datatables</title>
+<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!--<link rel="stylesheet" href="http://getbootstrap.com/assets/css/docs.css" />-->
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js" ></script>
+<script type="text/javascript"></script>
+
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "ajax": 'data/rt_data'
+    } );
+} );
+
+</script>
+
+<style type="text/css">
+.container {
+    width: 980px;
+	margin:0 auto;
+}
+#header {
+height: 150px;
+width: 100%;
+background: url('images/t6f_logo.png') right no-repeat;
+margin-bottom: 25px;
+border-bottom: 1px solid #999;
+padding-bottom: 25px;
+}
+#img_1
+{
+   float:left;
+   width:200px;
+   height:100px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="header">
+
+<header>
+    <img id="img_1" src="images/customer_logo.jpg" />
+</header>
+
+</div>
+
+<div class="container">
+<!--<input type="button" class="btn btn-primary" value="Load Table" id="load"/>-->
+<table id="example" class="display table table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Host</th>
+                <th>Vendor</th>
+                <th>Model</th>
+                <th>Serial #</th>
+                <th>Version</th>
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+                <th>Host</th>
+                <th>Vendor</th>
+                <th>Model</th>
+                <th>Serial #</th>
+                <th>Version</th>
+            </tr>
+        </tfoot>
+
+    </table>
+</div>
+
+</body>
+</html>
